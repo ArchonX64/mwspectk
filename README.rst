@@ -9,9 +9,9 @@ CDP_Finder.cpp is an experimental feature. You'll need to compile it and put it 
 
 Required Python Dependencies:
 
-NumPy
-SciPy
-Pandas
-Matplotlib
-Tkinter or PySide6 (for matplotlib backend, can be configured in mwspectk file)
+* NumPy
+* SciPy
+* Pandas
+* Matplotlib
+* Tkinter or PySide6 (for matplotlib backend, can be configured in mwspectk file)
 
