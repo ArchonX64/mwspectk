@@ -1,9 +1,17 @@
 Template for the Read the Docs tutorial
 =======================================
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
+A Python program/library that provides functions for analyzing and simplifying Fourier-transform microwave spectra.
 
-Read the tutorial here:
+mkspectools.py is a Python file that can be dropped anywhere and used to provide functions and classes
 
-https://docs.readthedocs.io/en/stable/tutorial/
+CDP_Finder.cpp is an experimental feature. You'll need to compile it and put it in the correct directory for now, but I'll simplify it in the future.
+
+Required Python Dependencies:
+
+    NumPy
+    SciPy
+    Pandas
+    Matplotlib
+    Tkinter or PySide6 (for matplotlib backend, can be configured in spectools file)
+
