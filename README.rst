@@ -1,4 +1,4 @@
-Template for the Read the Docs tutorial
+mwspectk.py
 =======================================
 
 A Python program/library that provides functions for analyzing and simplifying Fourier-transform microwave spectra.
