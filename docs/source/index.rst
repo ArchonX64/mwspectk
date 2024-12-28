@@ -1,22 +1,25 @@
-Welcome to Lumache's documentation!
+mwspectk.py
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+**mwspectk.py** is a Python library that provides tools to analyze
+Fourier-transform microwave spectra using data analytical methods
+rather than quantum mechanical methods.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+| mwspectk.py is designed to be used in one of two ways:
+* As a generic library, providing functions and classes for another program
+* A library for generating simple and readable scripts for simple tasks
+
+| The abilities of mwspectk.py are not limited to:
+* Loading several spectral datatypes into Python
+* Peak picking experimental spectra
+* Identifying peaks that share the same frequency across different spectra
+* Erasing peaks from experimental spectra
+* Removing peaks in one spectrum from another
+* Performing intensity ratio calculations
+* Finding constant difference patterns **(WIP)**
 
 .. note::
-
-   This project is under active development.
-
-Contents
---------
-
-.. toctree::
-
-   usage
-   api
+    This project will be updated sporadically if I think theres changes
+    that are necessary. I'll make sure the code works properly, but I'm
+    not the best at code deployment. Most of the time compilation and
+    setup will be on the user end.
