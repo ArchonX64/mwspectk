@@ -64,7 +64,7 @@ and then repeatedly adjust the parameters until a desirable peak-pick is achieve
 peak picks. Enabling :code:`scatter` will turn the peak picks into a scatter plot
 and :code:`sides` will show the determined sides of each peak.
 
-.. image:: docs/images/Figure_1.png
+.. image:: /images/Figure_1.png
 Figure 1: Snapshot of a spectrum displaying the peak picks and determined sides
 
 :code:`prominence` and :code:`wlen` are a bit difficult to comprehend, but they should
