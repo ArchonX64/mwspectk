@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'mwspectk.py'
+copyright = '2024, Gilbert'
+author = 'Kyle Gilbert'
 
 release = '0.1'
 version = '0.1.0'
@@ -33,3 +33,5 @@ html_theme = 'sphinx_rtd_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
+
+pygments_style = 'sphinx'

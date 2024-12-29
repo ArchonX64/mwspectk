@@ -546,13 +546,13 @@ def show(interactive: bool = False):
 
 
 def get_spectrum(path: str, name: str, inten_thresh: float, prominence: float,
-                 wlen: int = None, resolution_mult: float = None) -> ExperimentalSpectrum:
+                 delimiter: str = None, wlen: int = None,
+                 resolution_mult: float = None) -> ExperimentalSpectrum:
     if path.split(".")[1] == "csv":
-        #data = np.loadtxt(path, delimiter=",")w
         data = np.genfromtxt(path, delimiter=",")
 
     else:
-        data = np.loadtxt(path)
+        data = np.loadtxt(path, delimiter=delimiter)
 
     wlen = 20 if wlen is None else wlen
 
