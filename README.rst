@@ -3,7 +3,7 @@ mwspectk.py
 
 A Python program/library that provides functions for analyzing and simplifying Fourier-transform microwave spectra.
 
-Documentation: :ref:`https://mwspectk.readthedocs.io/en/latest/index.html`
+Documentation: https://mwspectk.readthedocs.io/en/latest/index.html
 
 mwspectk.py is a Python file that can be dropped anywhere and used to provide functions and classes
 
