@@ -64,7 +64,8 @@ and then repeatedly adjust the parameters until a desirable peak-pick is achieve
 
 :code:`plot()` will show the whole spectrum, while :code:`peaks.plot()` shows the the
 peak picks. Enabling :code:`scatter` will turn the peak picks into a scatter plot
-and :code:`sides` will show the determined sides of each peak.
+and :code:`sides` will show the determined sides of each peak. :code:`show()` is
+required to display the graph after you are finished calling :code:`plot()`
 
 .. image:: ../images/Figure_1.png
 Figure 1: Snapshot of a spectrum displaying the peak picks and determined sides
@@ -89,4 +90,48 @@ These functions only need a file name and a simple name to work.
 
     cat_file = get_cat("File1.cat", "Cat File")
     lin_file = get_lin("File2.lin", "Lin File")
+
+
+Correlating Spectral Peaks
+---------------
+
+Finding peaks that share the same frequency between different spectra is as simple
+as calling :code:`same_peaks_as()` from any spectrum :code:`peaks` object.
+
+.. code-block:: python
+
+    self_inds, other_inds = spectrum1.same_peaks_as(other=spectrum2, freq_variability=0.05)
+
+The parameter :code:`other` is the other spectrum which correlated peaks will be found for.
+:code:`freq_variability` is the maximum difference in frequency between two peaks for
+them to be correlated.
+
+The two returned objects, :code:`self_inds` and :code:`other_inds` are arrays
+which stand the indexes for each spectrum which are correlated. These two arrays
+are indexed matched, so applying the same index on both arrays will provide the two
+peaks that have been correlated.
+
+Cutting Peaks From Another Spectrum
+-----------------------------------
+
+Cutting from one another will result in:
+
+* All peaks from the spectrum being deleted
+* Replacing the area occupied by the peak with a horizontal line
+
+The easiest way to remove peaks is by calling :code:`remove_peaks_of()` on
+a spectrum object
+
+.. code-block:: python
+
+    inds = spectrum1.remove_peaks_of(other={spectrum2, spectrum3}, freq_variability=0.50)
+
+The parameter :code:`other` will be all of the other spectra that wish to be cut from
+the spectrum the function was called on, and :code:`freq_variability` is the maximum
+frequency difference between two peaks to be correlated.
+
+The :code:`inds` object is a list of tuples. Each list element represents each
+spectrum that was cut, and each tuple contains :code:`self_inds` and :code:`other_inds`,
+which are lists of the indexes of the peaks correlated between the spectra, similar
+to the lists returned from :code:`same_peaks_as`
 
