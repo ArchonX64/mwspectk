@@ -25,6 +25,7 @@ For experimental spectrum that contain every data point, :code:`get_spectrum`
 should be used.
 
 .. code-block:: python
+
     from mwspectk import *
 
     example = get_spectrum("SpectrumFile.ft", name="Spectrum", inten_thresh=0.15,
@@ -50,6 +51,7 @@ The best way to achieve the best peak pick is to graph the current peak-pick,
 and then repeatedly adjust the parameters until a desirable peak-pick is achieved.
 
 .. code-block:: python
+
     from mwspectk import *
 
     example = get_spectrum("SpectrumFile.ft", name="Spectrum", inten_thresh=0.15,
@@ -82,6 +84,7 @@ Currently, mwspectk.py only accepts files generated from SPFIT/SPCAT.
 These functions only need a file name and a simple name to work.
 
 .. code-block:: python
+
     from mwspectk import *
 
     cat_file = get_cat("File1.cat", "Cat File")
