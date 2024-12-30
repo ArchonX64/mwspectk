@@ -230,3 +230,5 @@ Figure 2: An image of a constructed RVI plot
 
 In this figure, all of the points that have a color are points that were correlated with
 a spectrum in the set provided to :code:`cut`.
+
+**(TODO)**: Add a way to label each of the cut spectra.
