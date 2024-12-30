@@ -15,9 +15,9 @@ directory as your project.
 
 .. _importing_spectra
 
-Importing Spectra
+Importing/Exporting Spectra
 -----------------
-Experimental Spectra
+Importing Experimental Spectra
 ____________________
 
 mwspectk.py has several different functions for importing different data types.
@@ -76,7 +76,7 @@ be adjusted based on:
 * :code:`prominence`: Decrease if peaks close together are not getting separated,increase if slight peak blemishes are being counted as peaks
 * :code:`wlen`: Decrease if peak sides are too wide, increase if too skinny
 
-Predicted Spectra
+Importing Predicted Spectra
 _________________
 
 Currently, mwspectk.py only accepts files generated from SPFIT/SPCAT.
@@ -91,6 +91,24 @@ These functions only need a file name and a simple name to work.
     cat_file = get_cat("File1.cat", "Cat File")
     lin_file = get_lin("File2.lin", "Lin File")
 
+Exporting
+_________
+
+Exporting is done by calling :code:`export()` on any spectrum object.
+
+.. code-block:: python
+
+    spectrum1.export("csv", "File Name")
+
+The first parameter will be the desired extension, and the second parameter is
+the desired file name. :code:`export()` will automatically format the output
+based on the extension, with the following extensions supported:
+
+* .csv
+* .txt
+* .ft
+
+**(TODO)**: The export system is a little outdated and needs to be worked on.
 
 Correlating Spectral Peaks
 ---------------
@@ -126,7 +144,7 @@ a spectrum object
 
     inds = spectrum1.remove_peaks_of(other={spectrum2, spectrum3}, freq_variability=0.50)
 
-The parameter :code:`other` will be all of the other spectra that wish to be cut from
+The parameter :code:`other` will be a :code:`set` of all of the other spectra that wish to be cut from
 the spectrum the function was called on, and :code:`freq_variability` is the maximum
 frequency difference between two peaks to be correlated.
 
@@ -135,3 +153,80 @@ spectrum that was cut, and each tuple contains :code:`self_inds` and :code:`othe
 which are lists of the indexes of the peaks correlated between the spectra, similar
 to the lists returned from :code:`same_peaks_as`
 
+Calculating Intensity Ratios
+----------------------------
+
+Calculating intensity ratios of the same peaks between two different spectra is
+simple once both of them are loaded into Python by using the method
+:code:`divide_by()`.
+
+.. code-block:: python
+
+    ratio = spectrum1.divide_by(other=spectrum2, freq_variability=0.05)
+
+The parameter :code:`other` represents **the spectrum** :code:`divide_by()`
+**was called on will be divided by**. The order is important here, as in this case
+the ratios will be the result of **dividing the intensity in** :code:`spectrum1` **by the
+intensity in** :code:`spectrum2`. The parameter :code:`freq_variability` represents the
+maximum frequency difference for two peaks between spectra to be correlated.
+
+The returned :code:`ratio` object contains a table of the intensity ratios and
+the indexes of peaks from each spectrum it was calculated from.
+
+Exporting
+_________
+
+Once a ratio is calculated, it will be stored in the spectrum as well. Exporting
+the spectrum once a ratio is calculated will create a new column with the intensity
+ratios, corresponding to the frequencies that were already in the spectrum.
+
+Cutting Intensity Ratio Ranges
+------------------------------
+
+Once a ratio object is obtained, it can be used to cut a range of intensity
+ratios from either the spectrum it was calculated from, or even the spectrum
+it was divided by. This process will use the :code:`keep_ratio_of` method:
+
+.. code-block:: python
+
+    ratio = spectrum1.divide_by(other=spectrum2, freq_variability=0.05)
+
+    spectrum1.keep_ratio_of(ratio, lbound=0.5, ubound=2.2)
+
+:code:`ratio` is the ratio object calculated by :code`divide_by()`, and
+:code:`lbound` and :code:`ubound` are the lower and upper limits of ratios you
+want to keep. In this case, :code:`spectrum1` will only be left with peaks
+that have an intensity ratio of 0.5 < x < 2.2.
+
+This function would work perfectly fine if called on :code:`spectrum2` in this case.
+
+Generating an RVI Plot
+----------------------
+
+RVI plots are constructed the most simply using :code:`construct_RVI()`:
+
+.. code-block:: python
+
+    construct_RVI(parent_spec=spectrum1, div_spec=spectrum2, cut={spectrum3},
+                  freq_variability=0.05, x_label="Intensity of Spectrum1")
+
+This will automatically construct a plot which will be seen once :code:`show()`
+is called.
+
+The parameters :code:`parent_spec` and :code:`div_spec` are the main spectrum
+and the spectrum that the main will be divided by, respectively. **The intensity
+graphed on the x-axis will be the intensities from** :code:`parent_spec`.
+
+The :code:`cut` parameter is a special parameter that takes a set of spectra. Any spectra
+put into this set will be correlated with the peaks and their respective peak points
+will be highlighted with a color. **All uncorrelated peaks will appear black**.
+
+Like the other functions, :code:`freq_variability` is simply the maximum frequency difference
+between peaks between different spectra to be correlated.
+
+.. image:: ../images/Figure_2.png
+
+Figure 2: An image of a constructed RVI plot
+
+In this figure, all of the points that have a color are points that were correlated with
+a spectrum in the set provided to :code:`cut`.
