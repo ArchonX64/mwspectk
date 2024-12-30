@@ -193,7 +193,7 @@ it was divided by. This process will use the :code:`keep_ratio_of` method:
 
     spectrum1.keep_ratio_of(ratio, lbound=0.5, ubound=2.2)
 
-:code:`ratio` is the ratio object calculated by :code`divide_by()`, and
+:code:`ratio` is the ratio object calculated by :code:`divide_by()`, and
 :code:`lbound` and :code:`ubound` are the lower and upper limits of ratios you
 want to keep. In this case, :code:`spectrum1` will only be left with peaks
 that have an intensity ratio of 0.5 < x < 2.2.
