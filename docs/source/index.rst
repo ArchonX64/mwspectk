@@ -1,6 +1,10 @@
 mwspectk.py
 ===================================
 
+.. toctree::
+    Home <self>
+    usage
+
 **mwspectk.py** is a Python library that provides tools to analyze
 Fourier-transform microwave spectra using data analytical methods
 rather than quantum mechanical methods.
