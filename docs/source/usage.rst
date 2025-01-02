@@ -3,7 +3,6 @@ Usage
 
 .. toctree::
     Home
-    usage <self>
 
 .. _installation:
 
